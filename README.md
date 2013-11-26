@@ -1,22 +1,11 @@
-Alavetelitheme
-==============
+AskAfrica Theme
+===============
 
-This is a "hello world" type theme package for Alaveteli.
-
-The intention is to support simple overlaying of templates and
-resources without the need to touch the core Alaveteli software.
-
-Typical usage should be limited to:
-
- * Putting CSS-based customisations in `public/stylesheets/custom.css`
-
- * Creating your own versions of non-functional pages (like "about
-   us", at `lib/views/help/about.rhtml` -- and/or localised versions at
-   lib/views/help/about.es.rhtml)
+This is the AskAfrica theme package for Alaveteli.
 
 To install::
 
-  ./script/plugin install git://github.com/mysociety/alavetelitheme.git
+  ./script/plugin install git://github.com/10layer/askafricatheme.git
 
 Look in the lib/ folder of the plugin to see how the overrides happen.
 
