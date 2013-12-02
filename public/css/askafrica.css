@@ -1,0 +1,38 @@
+#askafricatheme {
+  margin-top: 10px;
+}
+#askafricatheme #search-icon {
+  margin-top: 35px;
+  color: #221f1f;
+}
+#askafricatheme .navbar-toggle {
+  margin-top: 40px;
+}
+#askafricatheme .navbar-toggle .icon-bar {
+  background-color: #221f1f;
+}
+#askafricatheme .navbar-default {
+  background: none;
+  border: none;
+}
+#askafricatheme #frontpage_promo {
+  background: #221f1f url("/alavetelitheme/images/backgrounds/schoolkids/x-large.jpg") no-repeat center 0px;
+  background-size: 200%;
+  min-height: 350px;
+}
+#askafricatheme #frontpage_promo h1,
+#askafricatheme #frontpage_promo p {
+  color: #FFF;
+}
+#askafricatheme #frontpage_splash {
+  background-color: #221f1f;
+  color: #FFF;
+  padding-bottom: 40px;
+}
+#askafricatheme #frontpage_examples {
+  background: #221f1f url("/alavetelitheme/images/bg1.jpg") repeat 0 0;
+  color: #FFF;
+}
+#banner {
+  background: none !important;
+}

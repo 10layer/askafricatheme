@@ -1,0 +1,35 @@
+<div id="frontpage_promo">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<h1>Ask for info on why thousands of textbooks weren't delivered</h1>
+				<p>- Limpopo Education</p>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="frontpage_splash">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<%= render :partial => "frontpage_new_request" %>
+			</div>
+			<div class="col-md-6">
+				<%= render :partial => "frontpage_search_box" %>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="news" class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<%= render :partial => 'frontpage_intro_sentence'  %>
+		</div>
+	</div>	
+</div>
+<div id="frontpage_examples">
+	<div class="container">
+      <!-- <%= render :partial => "frontpage_bodies_list" %> -->
+      <%= render :partial => "frontpage_requests_list" %>
+	</div>
+</div>

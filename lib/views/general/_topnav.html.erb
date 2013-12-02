@@ -1,0 +1,32 @@
+<div class="container">
+<div class="row">
+<%= render :partial => 'general/orglink' %>
+<a class="btn pull-right" href="#" id="search-icon">
+  <i class="fa fa-search fa-2x"></i>
+</a>
+<nav class="navbar navbar-default span6 pull-right" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#"></a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="<%= 'active' if params[:controller] == 'general' and params[:action] != 'blog' and params[:action] != 'search' %>"><%= link_to _("Home"), frontpage_path %></li>
+        <li class="<%= 'active' if params[:controller] == 'request' and ['new', 'select_authority'].include?(params[:action]) %>"><%= link_to _("Make a request"), select_authority_path, :id => 'make-request-link' %></li>
+        <li class="<%= 'active' if params[:controller] == 'request' and !['new', 'select_authority'].include?(params[:action]) %>"><%= link_to _("View requests"), request_list_successful_path %></li>
+        <li class="<%= 'active' if params[:controller] == 'public_body' %>"><%= link_to _("View authorities"), list_public_bodies_default_path %></li>
+        <li class="<%= 'active' if params[:controller] == 'general' and params[:action] == 'blog' %>"><%= link_to _("Read blog"), blog_path %></li>
+        <li class="<%= 'active' if params[:controller] == 'help' %>"><%= link_to _("Help"), help_about_path %></li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
+</div>
+</div>
