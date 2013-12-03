@@ -1,5 +1,24 @@
 #askafricatheme {
+  font-family: "Melbourne", "Helvetica-neue", "Helvetica", "Arial", "sans-serif";
+  font-size: 14pt;
   margin-top: 10px;
+}
+#askafricatheme h1,
+#askafricatheme h2,
+#askafricatheme h3,
+#askafricatheme h4,
+#askafricatheme h5 {
+  color: #FFF;
+  font-family: "Melbourne", "Helvetica-neue", "Helvetica", "Arial", "sans-serif";
+}
+#askafricatheme h1 {
+  font-size: 30pt;
+}
+#askafricatheme h2 {
+  font-size: 20pt;
+}
+#askafricatheme .btn {
+  font-size: 12pt;
 }
 #askafricatheme #search-icon {
   margin-top: 35px;
@@ -17,21 +36,70 @@
 }
 #askafricatheme #frontpage_promo {
   background: #221f1f url("/alavetelitheme/images/backgrounds/schoolkids/x-large.jpg") no-repeat center 0px;
-  background-size: 200%;
+  background-size: 150%;
   min-height: 350px;
-}
-#askafricatheme #frontpage_promo h1,
-#askafricatheme #frontpage_promo p {
-  color: #FFF;
 }
 #askafricatheme #frontpage_splash {
   background-color: #221f1f;
-  color: #FFF;
+  color: #CCC;
   padding-bottom: 40px;
+}
+#askafricatheme #frontpage_splash h1,
+#askafricatheme #frontpage_splash h2,
+#askafricatheme #frontpage_splash h3,
+#askafricatheme #frontpage_splash h4,
+#askafricatheme #frontpage_splash h5 {
+  color: #FFF;
 }
 #askafricatheme #frontpage_examples {
   background: #221f1f url("/alavetelitheme/images/bg1.jpg") repeat 0 0;
+  color: #CCC;
+}
+#askafricatheme #frontpage_examples h1,
+#askafricatheme #frontpage_examples h2,
+#askafricatheme #frontpage_examples h3,
+#askafricatheme #frontpage_examples h4,
+#askafricatheme #frontpage_examples h5 {
   color: #FFF;
+}
+#askafricatheme footer {
+  background: #221f1f url("/alavetelitheme/images/bg1.jpg") repeat 0 0;
+  padding: 50px 0px;
+  color: #CCC;
+}
+#askafricatheme footer a {
+  color: #FFF;
+}
+#askafricatheme #wrapper {
+  background-color: #221f1f;
+  color: #CCC;
+  padding: 0px 0px 50px 0px;
+}
+#askafricatheme #wrapper a {
+  color: #FFF;
+}
+#askafricatheme #wrapper h1,
+#askafricatheme #wrapper h2,
+#askafricatheme #wrapper h3,
+#askafricatheme #wrapper h4,
+#askafricatheme #wrapper h5 {
+  color: #FFF;
+}
+#askafricatheme #news {
+  background-color: #FFF;
+  background-image: none;
+  color: #000;
+}
+#askafricatheme #news h1,
+#askafricatheme #news h2,
+#askafricatheme #news h3,
+#askafricatheme #news h4,
+#askafricatheme #news h5,
+#askafricatheme #news p {
+  color: #000;
+}
+#askafricatheme #news a {
+  color: #428bca;
 }
 #banner {
   background: none !important;

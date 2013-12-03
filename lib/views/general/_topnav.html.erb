@@ -1,9 +1,9 @@
 <div class="container">
 <div class="row">
 <%= render :partial => 'general/orglink' %>
-<a class="btn pull-right" href="#" id="search-icon">
+<!-- <a class="btn pull-right" href="#" id="search-icon">
   <i class="fa fa-search fa-2x"></i>
-</a>
+</a> -->
 <nav class="navbar navbar-default span6 pull-right" role="navigation">
   <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header">
@@ -23,7 +23,21 @@
         <li class="<%= 'active' if params[:controller] == 'request' and ['new', 'select_authority'].include?(params[:action]) %>"><%= link_to _("Make a request"), select_authority_path, :id => 'make-request-link' %></li>
         <li class="<%= 'active' if params[:controller] == 'request' and !['new', 'select_authority'].include?(params[:action]) %>"><%= link_to _("View requests"), request_list_successful_path %></li>
         <li class="<%= 'active' if params[:controller] == 'public_body' %>"><%= link_to _("View authorities"), list_public_bodies_default_path %></li>
-        <li class="<%= 'active' if params[:controller] == 'general' and params[:action] == 'blog' %>"><%= link_to _("Read blog"), blog_path %></li>
+        <!-- <li class="<%= 'active' if params[:controller] == 'general' and params[:action] == 'blog' %>"><%= link_to _("Read blog"), blog_path %></li> -->
+        <% if @user %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#"><%=link_to _("My requests"), show_user_requests_path(:url_name => @user.url_name) %></a></li>
+              <li><a href="#"><%=link_to _("My profile"), show_user_profile_path(:url_name => @user.url_name) %></a></li>
+              <li><a href="#"><%=link_to _("My wall"), show_user_wall_path(:url_name => @user.url_name) %></a></li>
+              <li class="divider"></li>
+              <li><a href="#"><%= link_to _("Sign out"), signout_path(:r => request.fullpath) %></a></li>
+            </ul>
+          </li>
+        <% else %>
+           <li class="<%= 'active' if params[:controller] == 'user' %>"><%= link_to _("Sign in or sign up"), signin_path(:r => request.fullpath) %></li>
+        <% end %>
         <li class="<%= 'active' if params[:controller] == 'help' %>"><%= link_to _("Help"), help_about_path %></li>
     </ul>
   </div><!-- /.navbar-collapse -->

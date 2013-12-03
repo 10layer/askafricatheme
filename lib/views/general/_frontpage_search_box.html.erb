@@ -1,8 +1,8 @@
 <h1>Search our Requests</h1>
 <form id="search_form" method="post" action="<%= search_redirect_path %>" role="form">
 	<div>
-		<input id="query" type="text" size="30" name="query" placeholder="Search" />
-		<input type="submit" class="btn" value="<%= _('Search') %>">
+		<input id="query" type="text" size="30" name="query" placeholder="Search for request" />
+		<input type="submit" class="btn btn-primary" value="<%= _('Search') %>">
 	</div>
 </form>
 	<%= _("We have {{number_of_requests}} requests from {{number_of_authorities}} authorities.",
