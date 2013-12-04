@@ -1,19 +1,29 @@
-<h2>News</h2>
-<% 
-require 'rss'
-require 'open-uri'
+<div class="col-md-12">
+	<h2>News</h2>
 
-open('http://www.opendemocracy.org.za/feed/rss/') do |rss|
-	feed = RSS::Parser.parse(rss)
-	feed.items.each do |item|
-		%>
-		<div class="col-md-6">
-			<h3><a href="<%= item.link %>"><%= raw item.title %></a></h3>
-			<p><%= raw item.description %></p>
-		</div>
-		<%
-		puts "Item: #{item.title}"
+	<div class="row">
+	<% 
+		require 'rss'
+		require 'open-uri'
+
+		x = 0;
+		open('http://www.opendemocracy.org.za/feed/rss/') do |rss|
+		feed = RSS::Parser.parse(rss)
+		feed.items.each do |item|
+			%>
+			
+			<div class="col-md-6">
+				<h3><a href="<%= item.link %>"><%= raw item.title %></a></h3>
+				<p><%= raw item.description %></p>
+			</div>
+			<% if x%2 != 0 %>
+				</div><div class="row">
+			<% end %>
+			<%
+			x+=1
+		end
 	end
-end
-%>
+	%>
+	</div>
+</div>
 
