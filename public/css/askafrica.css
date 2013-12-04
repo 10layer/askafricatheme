@@ -11,6 +11,10 @@
   color: #FFF;
   font-family: "Melbourne", "Helvetica-neue", "Helvetica", "Arial", "sans-serif";
 }
+#askafricatheme dt {
+  color: #FFF;
+  text-decoration: underline;
+}
 #askafricatheme h1 {
   font-size: 30pt;
 }
