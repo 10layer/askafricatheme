@@ -1,3 +1,4 @@
+<% cache("frontpage_search_box") do %>
 <h1>Search our Requests</h1>
 <form id="search_form" method="post" action="<%= search_redirect_path %>" role="form">
 	<div>
@@ -8,4 +9,4 @@
 	<%= _("We have {{number_of_requests}} requests from {{number_of_authorities}} authorities.",
 	:number_of_requests => InfoRequest.visible.count, :number_of_authorities => PublicBody.visible.count) %>
 </h2>
-
+<% end %>

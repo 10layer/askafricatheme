@@ -1,3 +1,4 @@
+<% cache("footer") do %> 
 <footer>
 	<div class="container">
 		<%= link_to _("Contact {{site_name}}", :site_name => site_name), help_contact_path %>
@@ -6,3 +7,4 @@
 		<%= render :partial => 'general/license' %>
 	</div>
 </footer>
+<% end %>

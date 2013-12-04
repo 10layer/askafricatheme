@@ -42,6 +42,8 @@
         <% end %>
 
         <%= render :partial => 'general/before_head_end' %>
+
+        <meta name="description" content="<%= @title ? "#{@title} - AskAfrica" : 'AskAfrica submits access to information to South African public authorities on your behalf' %>" />
     </head>
     <body class="<%= 'front' if params[:action] == 'frontpage' %>">
     <% if AlaveteliConfiguration::force_registration_on_new_request && !@user %>
