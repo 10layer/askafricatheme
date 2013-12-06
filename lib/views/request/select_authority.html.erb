@@ -26,28 +26,30 @@
 </script>
 
 <% @title = _("Select the authority to write to")  %>
+<div class="row">
+  <div class="col-md-6">
+    <h1 style="clear: left"><%= _('1. Select an authority') %></h1>
+    <div id="authority_selection">
+      <%= form_tag({:controller => "request", :action => "select_authority"}, {:id => "search_form", :method => "get"}) do %>
+         <div>
+             <p>
+             <%= _('First, type in the <strong>name of the South African public authority</strong> you\'d
+             like information from. <strong>By law, they have to respond</strong>
+             (<a href="{{url}}">why?</a>).', :url => (help_about_path + "#whybother_them").html_safe) %>
+             </p>
+             <input type="text" name="query" size="30" placeholder="Search for authority" />
+             
+             <%= hidden_field_tag 'bodies', 1 %>
+             <input type="submit" name="submit" class="btn btn-primary" value="Search" />
+         </div>
+      <% end %>
 
-  <h1 style="clear: left"><%= _('1. Select an authority') %></h1>
-
-  <div id="authority_selection">
-    <%= form_tag({:controller => "request", :action => "select_authority"}, {:id => "search_form", :method => "get"}) do %>
-       <div>
-           <p>
-           <%= _('First, type in the <strong>name of the South African public authority</strong> you\'d
-           like information from. <strong>By law, they have to respond</strong>
-           (<a href="{{url}}">why?</a>).', :url => (help_about_path + "#whybother_them").html_safe) %>
-           </p>
-           <input type="text" name="query" size="30" placeholder="Search for authority" />
-           
-           <%= hidden_field_tag 'bodies', 1 %>
-           <input type="submit" name="submit" class="btn btn-primary" value="Search" />
-       </div>
-    <% end %>
-
-    <div id="typeahead_response">
-      <%= render :partial => 'public_body/search_ahead' %>
+      <div id="typeahead_response">
+        <%= render :partial => 'public_body/search_ahead' %>
+      </div>
     </div>
   </div>
-
-  <div id="authority_preview">
+  <div class="col-md-6">
+    <div id="authority_preview"></div>
   </div>
+</div>

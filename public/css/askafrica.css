@@ -5992,7 +5992,7 @@ td.visible-print {
 }
 #askafricatheme {
   font-family: "Melbourne", "Helvetica-neue", "Helvetica", "Arial", "sans-serif";
-  font-size: 14pt;
+  font-size: 13pt;
   margin-top: 10px;
 }
 #askafricatheme h1,
@@ -6125,6 +6125,28 @@ td.visible-print {
 }
 #askafricatheme #news a {
   color: #428bca;
+}
+#askafricatheme .margin-top {
+  margin-top: 20px;
+}
+#askafricatheme .panel {
+  color: #666;
+}
+#askafricatheme .panel .panel-heading {
+  font-size: 20pt;
+}
+#askafricatheme .panel h1,
+#askafricatheme .panel h2,
+#askafricatheme .panel h3,
+#askafricatheme .panel h4,
+#askafricatheme .panel h5 {
+  color: #000 !important;
+}
+#askafricatheme .panel a {
+  color: #000 !important;
+}
+#askafricatheme .panel a.btn {
+  color: #FFF !important;
 }
 #banner {
   background: none !important;
