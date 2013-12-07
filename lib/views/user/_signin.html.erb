@@ -1,0 +1,42 @@
+<div id="signin">
+
+<%= form_tag({:action => "signin"}, {:id => "signin_form", :class=>"form-horizontal", :role=>"form"}) do %>
+	<%= foi_error_messages_for :user_signin %>
+
+	<div class="form-group">
+		<label class="form_label col-sm-3 control-label" for="user_signin_email"><%= _('Your e-mail:')%></label>
+		<div class="col-sm-9">
+			<%= text_field 'user_signin', 'email', { :size => 20, :tabindex => 10, :class=>"form-control" } %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="form_label col-sm-3 control-label" for="user_signin_password"><%= _('Password:')%></label>
+		<div class="col-sm-9">
+			<%= password_field 'user_signin', 'password', { :size => 15, :tabindex => 20, :class=>"form-control" } %>
+		</div>
+	</div>
+
+	<div class="help-block">
+	<%= link_to _('Forgotten your password?'), signchangepassword_path + "?pretoken=" + h(params[:token]), :tabindex => 30 %>
+	</div>
+
+	<div class="form-group">
+		<div class="col-sm-offset-3 col-sm-10">
+			<div class="checkbox">
+				<label for="remember_me" class="col-sm-4 ">Remember me <%= check_box_tag 'remember_me', "1", false, :tabindex => 40 %></label>
+			</div>
+		</div>
+		<div class="help-block">
+			Keeps you signed in longer; do not use on a public computer.
+		</div>
+	</div>
+
+	<div class="form-group">
+	<%= hidden_field_tag 'token', params[:token], {:id => 'signin_token' } %>
+	<%= hidden_field_tag :modal, params[:modal], {:id => 'signin_modal' } %>
+	<%= submit_tag _('Sign in'), :tabindex => 50, :class=>"btn btn-primary" %>
+	</div>
+<% end %>
+
+</div>
