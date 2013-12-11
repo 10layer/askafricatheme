@@ -1,4 +1,4 @@
-THEME_NAME = File.split(File.expand_path("../..", __FILE__))[1]
+THEME_NAME = File.split(File.expand_path("../..", __FILE__))[1] unless defined?(THEME_NAME)
 
 class ActionController::Base
     # The following prepends the path of the current theme's views to
