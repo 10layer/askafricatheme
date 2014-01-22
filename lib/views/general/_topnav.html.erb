@@ -39,6 +39,7 @@
            <li class="<%= 'active' if params[:controller] == 'user' %>"><%= link_to _("Sign in or sign up"), signin_path(:r => request.fullpath) %></li>
         <% end %>
         <li class="<%= 'active' if params[:controller] == 'help' %>"><%= link_to _("Help"), help_about_path %></li>
+        <li class="logo" style="width:120px"><a href="http://www.opendemocracy.org.za/"><img style="position:absolute; margin-top: -20px" src="/alavetelitheme/images/odac_logo_small.png" /></a></li>
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
