@@ -41,3 +41,12 @@ $alaveteli_route_extensions << 'custom-routes.rb'
 # ]
 # FastGettext.add_text_domain 'app', :type=>:chain, :chain=>repos
 # FastGettext.default_text_domain = 'app'
+
+# Prepend the asset directories in this theme to the asset path:
+['stylesheets', 'images', 'javascripts'].each do |asset_type|
+    theme_asset_path = File.join(File.dirname(__FILE__),
+                                 '..',
+                                 'assets',
+                                 asset_type)
+    Rails.application.config.assets.paths.unshift theme_asset_path
+end

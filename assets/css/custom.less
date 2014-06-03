@@ -1,0 +1,216 @@
+@import "bootstrap-3.1.1/less/mixins";
+@import "bootstrap-3.1.1/less/variables";
+// Reset
+@import "bootstrap-3.1.1/less/normalize";
+@import "bootstrap-3.1.1/less/print";
+
+// Core CSS
+@import "bootstrap-3.1.1/less/scaffolding.less";
+@import "bootstrap-3.1.1/less/type.less";
+@import "bootstrap-3.1.1/less/code.less";
+@import "bootstrap-3.1.1/less/grid.less";
+@import "bootstrap-3.1.1/less/tables.less";
+@import "bootstrap-3.1.1/less/forms.less";
+@import "bootstrap-3.1.1/less/buttons.less";
+
+// Components
+@import "bootstrap-3.1.1/less/component-animations.less";
+@import "bootstrap-3.1.1/less/glyphicons.less";
+@import "bootstrap-3.1.1/less/dropdowns.less";
+@import "bootstrap-3.1.1/less/button-groups.less";
+@import "bootstrap-3.1.1/less/input-groups.less";
+@import "bootstrap-3.1.1/less/navs.less";
+@import "bootstrap-3.1.1/less/navbar.less";
+@import "bootstrap-3.1.1/less/breadcrumbs.less";
+@import "bootstrap-3.1.1/less/pagination.less";
+@import "bootstrap-3.1.1/less/pager.less";
+@import "bootstrap-3.1.1/less/labels.less";
+@import "bootstrap-3.1.1/less/badges.less";
+@import "bootstrap-3.1.1/less/jumbotron.less";
+@import "bootstrap-3.1.1/less/thumbnails.less";
+@import "bootstrap-3.1.1/less/alerts.less";
+@import "bootstrap-3.1.1/less/progress-bars.less";
+@import "bootstrap-3.1.1/less/media.less";
+@import "bootstrap-3.1.1/less/list-group.less";
+@import "bootstrap-3.1.1/less/panels.less";
+@import "bootstrap-3.1.1/less/wells.less";
+@import "bootstrap-3.1.1/less/close.less";
+
+// Components w/ JavaScript
+@import "bootstrap-3.1.1/less/modals.less";
+@import "bootstrap-3.1.1/less/tooltip.less";
+@import "bootstrap-3.1.1/less/popovers.less";
+@import "bootstrap-3.1.1/less/carousel.less";
+
+// Utility classes
+@import "bootstrap-3.1.1/less/utilities.less";
+@import "bootstrap-3.1.1/less/responsive-utilities.less";
+
+
+	#banner {
+		.container;
+		background-color: #FFF;
+
+		#banner_inner {
+			.row;
+			// width: 100%;
+			// margin: 0px;
+		}
+	}
+
+	form {
+		.form-group;
+	}
+
+	input[type="text"] {
+		.form-control;
+	}
+
+	
+	#logged_in_bar {
+	// .row;
+	position: relative;
+	.btn;
+	.btn-info;
+	// .make-sm-column(3);
+	// .make-md-column-offset(9);
+	// .col-sm-4;
+	// .col-sm-offset-8;
+}
+
+	#navigation_search {
+		// .row;
+		position: absolute;
+		form {
+			float: right;
+		}
+	}
+	#navigation_search input#navigation_search_query {
+		.form-control;
+		width: 400px;
+		float: left;
+	}
+
+	#navigation_search input#navigation_search_button {
+		.btn;
+		.btn-primary;
+		width: auto;
+		height: auto;
+		float: left;
+		margin: 5px;
+		left: 0px;
+		top: 0px;
+	}
+
+	#logged_in_bar {
+		.row;
+	}
+
+	
+
+	h1, h2, h3, h4, h5 {
+		// color: #FFF;
+		font-family: "Melbourne", "Helvetica-neue", "Helvetica", "Arial", "sans-serif";
+	
+	}
+body {
+	font-family: "Melbourne", "Helvetica-neue", "Helvetica", "Arial", "sans-serif";
+	font-size: 13pt;
+}
+
+
+#topnav {
+	.navbar;
+	font-size: 0.8em;
+	float: right;
+	margin-top: -40px;
+	ul#navigation {
+		.nav;
+		.navbar-nav;
+
+		// .navbar-right;
+		li {
+			padding: 0px;
+		}
+		li.selected {
+			a {
+				color: #555555;
+				background-color: #e7e7e7;
+			}
+		}
+	}
+
+
+}
+
+
+#wrapper {
+	width: 100%;
+	margin: 0px;
+	.make-row();
+	.container;
+}
+
+#content {
+	.make-md-column(12);
+	// .content;
+}
+
+#frontpage_splash {
+	background: #221f1f url("/alavetelitheme/images/backgrounds/schoolkids/large.jpg") no-repeat center 0px;
+	color: #EEE;
+
+	text-shadow: 3px 0px 6px #444;
+
+	#left_column, #right_column {
+		.make-md-column(6);
+	}
+
+	h1, h2, h3, h4 {
+		color: #ddd;
+
+		strong {
+			color: #fff;
+		}
+
+		
+	}
+
+	a {
+		text-decoration: underline;
+		color: #FFF;
+	}
+}
+
+form input[type=submit], a.link_button_green {
+	.btn;
+	.btn-primary;
+	a.link_button_green_large {
+		.btn-lg;
+	}
+}
+
+#frontpage_examples div#examples_1 {
+	width: 100%;
+	float: none;
+}
+
+#authority_preview, #request_header {
+	background-color: #CCC;
+}
+
+#request_header_text {
+	background-color: #999;
+	border-color: #444;
+}
+
+footer {
+	background-color: #444;
+	color: #FFF;
+	padding: 50px;
+	font-size: 0.7em;
+	a {
+		color: #FFF;
+		text-decoration: underline;
+	}
+}
