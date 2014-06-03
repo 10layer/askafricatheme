@@ -67,11 +67,16 @@
 	}
 
 	
-	#logged_in_bar {
+#logged_in_bar {
 	// .row;
-	position: relative;
+	position: absolute;
 	.btn;
 	.btn-info;
+	right: auto;
+	a, a:visited { 
+		color: #FFF;
+	}
+	left: 20px;
 	// .make-sm-column(3);
 	// .make-md-column-offset(9);
 	// .col-sm-4;
@@ -115,15 +120,16 @@
 	}
 body {
 	font-family: "Melbourne", "Helvetica-neue", "Helvetica", "Arial", "sans-serif";
-	font-size: 13pt;
+	font-size: 12px;
 }
 
 
+#banner_inner {
 #topnav {
 	.navbar;
-	font-size: 0.8em;
+	font-size: 16px;
 	float: right;
-	margin-top: -40px;
+	margin-top: -10px;
 	ul#navigation {
 		.nav;
 		.navbar-nav;
@@ -140,7 +146,7 @@ body {
 		}
 	}
 
-
+}
 }
 
 
@@ -185,10 +191,14 @@ body {
 form input[type=submit], a.link_button_green {
 	.btn;
 	.btn-primary;
-	a.link_button_green_large {
-		.btn-lg;
-	}
 }
+
+a.link_button_green_large {
+		.btn-lg;
+		.btn-primary;
+		background-image: none;
+		font-size: 18px;
+	}
 
 #frontpage_examples div#examples_1 {
 	width: 100%;
