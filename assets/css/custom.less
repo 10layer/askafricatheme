@@ -46,109 +46,133 @@
 @import "bootstrap-3.1.1/less/utilities.less";
 @import "bootstrap-3.1.1/less/responsive-utilities.less";
 
-
-	#banner {
-		.container;
-		background-color: #FFF;
-
-		#banner_inner {
-			.row;
-			// width: 100%;
-			// margin: 0px;
-		}
-	}
-
-	form {
-		.form-group;
-	}
-
-	input[type="text"] {
-		.form-control;
-	}
-
-	
-#logged_in_bar {
-	// .row;
-	position: absolute;
-	.btn;
-	.btn-info;
-	right: auto;
-	a, a:visited { 
-		color: #FFF;
-	}
-	left: 20px;
-	// .make-sm-column(3);
-	// .make-md-column-offset(9);
-	// .col-sm-4;
-	// .col-sm-offset-8;
+body {
+	.container;
 }
 
-	#navigation_search {
-		// .row;
-		position: absolute;
-		form {
-			float: right;
-		}
-	}
-	#navigation_search input#navigation_search_query {
-		.form-control;
-		width: 400px;
-		float: left;
-	}
 
-	#navigation_search input#navigation_search_button {
-		.btn;
-		.btn-primary;
-		width: auto;
-		height: auto;
-		float: left;
-		margin: 5px;
-		left: 0px;
-		top: 0px;
-	}
+form {
+	.form-group;
+}
 
-	#logged_in_bar {
-		.row;
-	}
+input[type="text"] {
+	.form-control;
+}
 
 	
 
-	h1, h2, h3, h4, h5 {
-		// color: #FFF;
-		font-family: "Melbourne", "Helvetica-neue", "Helvetica", "Arial", "sans-serif";
-	
-	}
+
+
+
+h1, h2, h3, h4, h5 {
+	font-family: "Melbourne", "Helvetica-neue", "Helvetica", "Arial", "sans-serif";
+
+}
+
 body {
 	font-family: "Melbourne", "Helvetica-neue", "Helvetica", "Arial", "sans-serif";
 	font-size: 12px;
 }
 
+#banner {
+	// .make-row;
+	background-color: #FFF;
 
-#banner_inner {
-#topnav {
-	.navbar;
-	font-size: 16px;
-	float: right;
-	margin-top: -10px;
-	ul#navigation {
-		.nav;
-		.navbar-nav;
+	#banner_inner {
+		width: auto;
+		.make-row;
 
-		// .navbar-right;
-		li {
-			padding: 0px;
+		#logo {
+			position: relative;
+			top: 0px;
+			.make-md-column(2);
+			clear: both;
+			padding-top:20px;
 		}
-		li.selected {
-			a {
-				color: #555555;
-				background-color: #e7e7e7;
+
+		#logged_in_bar {
+			display: block;
+			background-color: #FFF;
+			border: none;
+			position: absolute;
+			left: 0px;
+			margin-left: 15px;
+			text-align: left;
+			.make-md-column(6);
+			a, a:visited { 
+				color: #FFF;
+				.btn;
+				.btn-info;
+			}
+		}
+
+		#navigation_search {
+			.make-md-column(6);
+			position: absolute;
+			right: 0px;
+			left: auto;
+			// float: right;
+			// .make-row();
+			
+			// form {
+			// 	float: right;
+			// }
+			
+
+			input#navigation_search_query {
+				.form-control;
+				.make-md-column(9);
+				// width: 400px;
+				// float: left;
+			}
+
+			input#navigation_search_button {
+				.btn;
+				.btn-primary;
+				// .make-md-column(2);
+				width: auto;
+				height: auto;
+				float: left;
+				margin: 5px;
+				left: 0px;
+				top: 0px;
+			}
+		}
+
+		#topnav {
+			// .row;
+			.navbar;
+			
+			font-size: 16px;
+			// float: right;
+			margin-top: -65px;
+			// .make-md-column(12);
+			text-align: right;
+			// height: 50px;
+			ul#navigation {
+				// .make-md-column(10);
+				// .make-md-column-offset(2);
+				// position: absolute;
+				.nav;
+				.navbar-nav;
+				// .pull-right;
+				text-align: right;
+				li {
+					padding: 0px;
+					a {
+						color: #555;
+					}
+				}
+				li.selected {
+					a {
+						color: #555555;
+						background-color: #e7e7e7;
+					}
+				}
 			}
 		}
 	}
-
 }
-}
-
 
 #wrapper {
 	width: 100%;
@@ -159,8 +183,8 @@ body {
 
 #content {
 	.make-md-column(12);
-	// .content;
 }
+
 
 #frontpage_splash {
 	background: #221f1f url("/alavetelitheme/images/backgrounds/schoolkids/large.jpg") no-repeat center 0px;
@@ -191,6 +215,11 @@ body {
 form input[type=submit], a.link_button_green {
 	.btn;
 	.btn-primary;
+}
+
+#search_form input[type=submit], #search_form input[type=submit]:hover {
+	.btn;
+	color: #FFF;
 }
 
 a.link_button_green_large {
