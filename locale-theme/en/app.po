@@ -4,4 +4,7 @@
 # call FOI "RTI" throughougout, like this:
 
 msgid "Make and browse Freedom of Information (FOI) requests"
-msgstr "Make and browse Right to Know (RTI) requests"
+msgstr "Make and browse Promotion of Access to Information (PAIA) requests"
+
+msgid "First, type in the <strong>name of the UK public authority</strong> you'd\\n           like information from. <strong>By law, they have to respond</strong>\\n           (<a href=\"{{url}}\">why?</a>)."
+msgstr "First, type in the <strong>name of the South African public authority</strong> you'd like information from. <strong>By law, they have to respond</strong> (<a href=\"{{url}}\">why?</a>)."
