@@ -5882,6 +5882,7 @@ body {
 }
 #banner {
   background-color: #FFF;
+  display: inline-block;
 }
 #banner #banner_inner {
   width: auto;
