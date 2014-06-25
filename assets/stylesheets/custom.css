@@ -5882,7 +5882,6 @@ body {
 }
 #banner {
   background-color: #FFF;
-  display: inline-block;
 }
 #banner #banner_inner {
   width: auto;
@@ -6212,6 +6211,7 @@ fieldset[disabled] #banner #banner_inner #navigation_search input#navigation_sea
   min-height: 50px;
   margin-bottom: 20px;
   border: 1px solid transparent;
+  display: inline-block;
   font-size: 16px;
   margin-top: -65px;
   text-align: right;
