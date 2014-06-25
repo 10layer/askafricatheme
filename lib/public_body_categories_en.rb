@@ -9,8 +9,6 @@
 
 PublicBodyCategories.add(:en, [
     "Quick Links",
-        [ "national", "National", "National Agencies" ],
-        [ "provincial", "Provincial", "Provincial Agencies"],
-    "Popular agencies",
-        [ "popular_agency", "Popular agencies", "a lonely agency"]
+        [ "national", "National Agencies", "National Agencies" ],
+        [ "provincial", "Provincial Agencies", "Provincial Agencies"]
 ])
