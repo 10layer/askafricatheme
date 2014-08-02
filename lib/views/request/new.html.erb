@@ -1,0 +1,329 @@
+<% unless @batch %>
+  <script type="text/javascript">
+      $(document).ready(function(){
+          // Avoid triggering too often (on each keystroke) by using the debounce jQuery plugin:
+          // http://benalman.com/projects/jquery-throttle-debounce-plugin/
+          $("#typeahead_search").keypress($.debounce( 300, function() {
+              $("#typeahead_response").load("<%=search_ahead_url%>?q="+encodeURI(this.value), function() {
+                  // When following links in typeahead results, open new tab/window
+                  $("#typeahead_response a").attr("target","_blank");
+
+                  // Update the public body site search link
+                  $("#body-site-search-link").attr("href", "http://www.google.com/#q="+encodeURI($("#typeahead_search").val())+
+                                                  "+site:<%= @info_request.public_body.calculated_home_page %>");
+              });
+          }));
+
+      });
+  </script>
+<% end %>
+<% if @batch %>
+  <% @title = _("Make an {{law_used_short}} request", :law_used_short=>h(@info_request.law_used_short))  %>
+<% else %>
+  <% @title = _("Make an {{law_used_short}} request to '{{public_body_name}}'",:law_used_short=>h(@info_request.law_used_short),:public_body_name=>h(@info_request.public_body.name))  %>
+<% end %>
+    <h1><%= _('2. Ask for Information') %></h1>
+
+    <% if @existing_request %>
+      <div class="errorExplanation" id="errorExplanation"><ul>
+      <li>
+       <%= _('{{existing_request_user}} already
+      created the same request on {{date}}. You can either view the <a href="{{existing_request}}">existing request</a>,
+      or edit the details below to make a new but similar request.',:existing_request_user=>user_or_you_capital_link(@existing_request.user), :date=>simple_date(@existing_request.created_at), :existing_request=>request_path(@existing_request)) %>
+      </li>
+      </ul></div>
+    <% end %>
+    <% if @existing_batch %>
+    <div class="errorExplanation" id="errorExplanation"><ul>
+    <li>
+     <%= _('You already created the same batch of requests on {{date}}.   You can either view the <a href="{{existing_batch}}">existing batch</a>, or edit the details below to make a new but similar batch of requests.', :date=>simple_date(@existing_batch.created_at), :existing_batch=>info_request_batch_path(@existing_batch)) %>
+    </li>
+    </ul></div>
+    <% end %>
+
+    <%= foi_error_messages_for :info_request, :outgoing_message %>
+
+    <%= form_for(@info_request, :url => (@batch ? new_batch_path : new_request_path), :html => { :id => 'write_form' }  ) do |f| %>
+
+    <div id="request_header">
+        <div id="request_header_body">
+            <label class="form_label"><%= _('To:') %></label>
+
+            <% if @batch %>
+                <span id="to_public_body">
+                  <%= _("Your selected authorities") %>
+                  <span class="batch_public_body_toggle" data-hidetext="<%= _("(hide)") %>" data-showtext="<%= _("(show)") %>"><a class="toggle-message"></a></span>
+                </span>
+
+                <div class="batch_public_body_list">
+                  <ul>
+                  <% @public_bodies.each do |public_body| %>
+                    <li><%= public_body.name %></li>
+                  <% end %>
+                  </ul>
+                </div>
+
+            <% else %>
+              <span id="to_public_body">
+                <%=h(@info_request.public_body.name)%>
+              </span>
+            <% end %>
+
+            <% unless @batch %>
+              <div class="form_item_note">
+                  <% if @info_request.public_body.info_requests.size > 0 %>
+                      <%= _("Browse <a href='{{url}}'>other requests</a> to '{{public_body_name}}' for examples of how to word your request.", :public_body_name=>h(@info_request.public_body.name), :url=>public_body_path(@info_request.public_body)) %>
+                  <% else %>
+                      <%= _("Browse <a href='{{url}}'>other requests</a> for examples of how to word your request.", :url=>request_list_url) %>
+                  <% end %>
+              </div>
+
+              <% if @info_request.public_body.has_notes? %>
+                <div id="request_header_text">
+                  <h3><%= _('Special note for this authority!') %></h3>
+                  <p><%= @info_request.public_body.notes_as_html.html_safe %></p>
+                </div>
+              <% end %>
+
+              <% if @info_request.public_body.eir_only? %>
+                <h3><%= _('Please ask for environmental information only') %></h3>
+
+                <p><%= _('The Freedom of Information Act <strong>does not apply</strong> to') %> <%=h(@info_request.public_body.name)%>.
+                <%= _('However, you have the right to request environmental
+            information under a different law') %> (<a href="/help/requesting#eir">explanation</a>).
+                <%= _('This covers a very wide spectrum of information about the state of
+            the <strong>natural and built environment</strong>, such as:') %>
+
+                <ul>
+                <li><%= _('Air, water, soil, land, flora and fauna (including how these effect
+            human beings)') %></li>
+                <li><%= _('Information on emissions and discharges (e.g. noise, energy,
+            radiation, waste materials)') %></li>
+                <li><%= _('Human health and safety') %></li>
+                <li><%= _('Cultural sites and built structures (as they may be affected by the
+            environmental factors listed above)') %></li>
+                <li><%= _('Plans and administrative measures that affect these matters') %></li>
+                </ul>
+
+                <p><%= _('Please only request information that comes under those categories, <strong>do not waste your
+            time</strong> or the time of the public authority by requesting unrelated information.') %></p>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div id="request_header_subject">
+            <p>
+                <label class="form_label" for="typeahead_search"><%= _('Summary:') %></label>
+                <%= f.text_field :title, :size => 50, :id =>"typeahead_search" %>
+            </p>
+            <div class="form_item_note">
+                (<%= _("a one line summary of the information you are requesting, \n\t\t\te.g.") %>
+                  <%= render :partial => "summary_suggestion" %>)
+            </div>
+        </div>
+
+        <div id="typeahead_response">
+        </div>
+    </div>
+
+    <div id="request_advice">
+        <ul>
+        <li><%= _('Write your request in <strong>simple, precise language</strong>.') %></li>
+        <li><%= _('Ask for <strong>specific</strong> documents or information, this site is not suitable for general enquiries.') %></li>
+        <li><%= _('Keep it <strong>focused</strong>, you\'ll be more likely to get what you want (<a href="{{url}}">why?</a>).', :url => (help_requesting_path + '#focused').html_safe) %></li>
+        </ul>
+    </div>
+
+    <div id="request_form">
+        <%= fields_for :outgoing_message do |o| %>
+        
+        
+        <p>
+            <label class="form_label" for="outgoing_message_body"><%= _('Your request:') %></label>
+            
+
+            <textarea cols="60" id="outgoing_message_body" name="outgoing_message[body]" rows="20">
+Dear Information Officer/Deputy Information Officer,
+Please find herewith my request for access to information made in terms of the Promotion of Access to Information Act 2 of 2000.
+
+
+REPUBLIC OF SOUTH AFRICA 
+FORM A 
+REQUEST FOR ACCESS TO RECORD OF PUBLIC BODY 
+(Section 18(1) of the Promotion of Access to Information Act, 2000 (Act No. 2 of 2000)) 
+[Regulation 6] 
+
+FOR DEPARTMENTAL USE 
+Reference number: ___________________________
+Request received by _______________________________________ (state rank, 
+name and surname of information officer/deputy information officer) on ______________________ (date) 
+at ___________________________________ (place). 
+Request fee (if any): R ___________________ 
+Deposit (if any): R _____________________ 
+Access fee: R _____________________
+
+
+___________________________________________________________
+SIGNATURE OF INFORMATION OFFICER/DEPUTY INFORMATION OFFICER
+
+A. Particulars of public body 
+
+The Information Officer/Deputy Information Officer:
+<%= @info_request.public_body.name %>
+<%= @info_request.public_body.request_email %>
+<%= @info_request.public_body.contact_name %>
+<%= @info_request.public_body.postal_address %>
+<%= @info_request.public_body.tel %>
+<%= @info_request.public_body.cel %>
+
+B. Particulars of person requesting access to the record 
+(a) The particulars of the person who requests access to the record must be given below. 
+(b) The address and/or fax number in the Republic to which the information is to be sent, must be given. 
+(c) Proof of the capacity in which the request is made, if applicable, must be attached. 
+
+Full names and surname: <%= @user? @user.name : "&lt;Insert your name&gt;"  %>
+Identity number: &lt;Insert your ID number&gt;
+Postal address: &lt;Insert your postal address&gt;
+Telephone number: &lt;Insert your telephone number&gt;
+Fax number: &lt;Insert your fax number&gt;
+E-mail address: <%= @user? @user.email : "&lt;Insert your email&gt;"  %>
+
+Capacity in which request is made, when made on behalf of another person:
+&lt;Complete if making request on someone else's behalf &gt;
+
+C. Particulars of person on whose behalf request is made 
+This section must be completed ONLY if a request for information is made on behalf of another person. 
+
+Full names and surname: &lt;Insert name if making request on someone else's behalf &gt;
+Identity number: &lt;Insert name if making request on someone else's behalf &gt;
+
+D. Particulars of record 
+(a) Provide full particulars of the record to which access is requested, including the reference number if that is known to you, to enable the record to be located. 
+(b) If the provided space is inadequate, please continue on a separate folio and attach it to this form. The requester must sign all the additional folios. 
+
+1. Description of record or relevant part of the record: 
+&lt;Insert a description of the record you are looking for in detail here&gt;
+
+2. Reference number, if available:
+&lt;Insert reference number here&gt;
+
+3. Any further particulars of record: 
+&lt;Insert further particulars here&gt;
+
+E. Fees 
+(a) A request for access to a record, other than a record containing personal information about yourself, will be processed only after a request fee has been paid. 
+(b) You will be notified of the amount required to be paid as the request fee. 
+(c) The fee payable for access to a record depends on the form in which access is required and the reasonable time required to search for and prepare a record. 
+(d) If you qualify for exemption of the payment of any fee, please state the reason for exemption. 
+
+Reason for exemption from payment of fees: 
+&lt;If you believe you are exempt from fees, please state why here&gt;
+
+F. Form of access to record 
+
+If you are prevented by a disability to read, view or listen to the record in the form of access provided for in 1 to 4 below, 
+state your disability and indicate in which form the record is required. 
+
+Disability: 
+&lt;Insert disability here&gt;
+Form in which record is required: 
+&lt;Insert form of record if disabled here&gt;
+
+NOTES: 
+(a) Compliance with your request for access in the specified form may depend on the form in which the record is 
+available. 
+(b) Access in the form requested may be refused in certain circumstances. In such a case you will be informed if 
+access will be granted in another form. 
+(c) The fee payable for access to the record, if any, will be determined partly by the form in which access is requested. 
+
+Mark the appropriate box with an X. 
+&lt;Delete inappropriate X's&gt;
+
+1. If the record is in written or printed form: 
+[ X ] copy of record* 
+[ X ] inspection of record
+2. If record consists of visual images -
+(this includes photographs, slides, video recordings, computer-generated images, sketches, etc.):
+[ X ] view the images copy of the images* 
+[ X ] transcription of the 
+images* 
+
+3. If record consists of recorded words or information which can be reproduced in sound: 
+[ X ] listen to the soundtrack (audio cassette)
+[ X ] transcription of soundtrack* (written or printed document)
+4. If record is held on computer or in an electronic or machine-readable form: 
+[ X ] printed copy of record* 
+[ X ] printed copy of information derived from the record*
+[ X ] copy in computer readable form* (stiffy or compact disc)
+
+*If you requested a copy or transcription of a record (above), do you wish the copy or 
+transcription to be posted to you? 
+Postage is payable.
+[ X ] YES 
+[ X ] NO
+
+Note that if the record is not available in the language you prefer, access may be granted in the language in which the 
+record is available.
+In which language would you prefer the record? 
+&lt;Insert preferred language here&gt;
+
+G. Notice of decision regarding request for access 
+You will be notified in writing whether your request has been approved / denied. If you wish to be informed in another 
+manner, please specify the manner and provide the necessary particulars to enable compliance with your request. 
+
+How would you prefer to be informed of the decision regarding your request for access to the record? 
+Via email as a reply to the original request email.
+</textarea>
+        </p>
+        <% end %>
+
+        <% if !@user %>
+            <p class="form_note">
+
+                <%= raw(_('Everything that you enter on this page, including <strong>your name</strong>,
+                will be <strong>displayed publicly</strong> on
+                this website forever (<a href="{{url}}">why?</a>).', :url => (help_privacy_path+"#public_request").html_safe)) %>
+                <%= raw(_('If you are thinking of using a pseudonym,
+                please <a href="{{url}}">read this first</a>.', :url => (help_privacy_path+"#real_name").html_safe)) %>
+            </p>
+        <% else %>
+            <p class="form_note">
+                <%= raw(_('Everything that you enter on this page
+                will be <strong>displayed publicly</strong> on
+                this website forever (<a href="{{url}}">why?</a>).', :url => (help_privacy_path+"#public_request").html_safe)) %>
+            </p>
+        <% end %>
+
+        <p class="form_note">
+            <%= raw(_("<strong> Can I request information about myself?</strong>\n" +
+            "\t\t\t<a href=\"{{url}}\">No! (Click here for details)</a>", :url => (help_requesting_path+"#data_protection").html_safe)) %>
+        </p>
+
+        <div class="form_button">
+            <% if @batch %>
+              <% params[:public_body_ids].each do |public_body_id| %>
+                <%= hidden_field_tag("public_body_ids[]", public_body_id)%>
+              <% end %>
+            <% else %>
+              <%= f.hidden_field(:public_body_id, { :value => @info_request.public_body_id } ) %>
+            <% end %>
+            <%= hidden_field_tag(:submitted_new_request, 1 ) %>
+            <%= hidden_field_tag(:preview, 1 ) %>
+            <%= submit_tag _("Preview your public request") %>
+        </div>
+
+        <% if !@info_request.tag_string.empty? %>
+            <p class="form_note">
+                <!-- <label class="form_label" for="info_request_tag_string"><%= _("Tags (separated by a space):") %></label>
+                <%= f.text_field :tag_string, :size => 50 %> -->
+
+                <%= f.hidden_field(:tag_string) %>
+                <strong>Tags:</strong> <%=h @info_request.tag_string %>
+            </p>
+        <% end %>
+
+        </div>
+<% end %>
+<% if @batch %>
+  <%= javascript_include_tag 'new-request.js' %>
+<% end %>
